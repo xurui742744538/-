@@ -1,0 +1,28 @@
+version: '3.4'
+services:
+  zoo1: 
+    image: xiaochunping/zookeeper:3.4
+    hostname: zoo1
+    ports:
+      - 2181:2181
+    restart: always
+    environment:
+      ZOO_MY_ID: 1
+      ZOO_SERVERS: server.1=0.0.0.0:2888:3888 server.2=zoo2:2888:3888
+  zoo2:
+    image: xiaochunping/zookeeper:3.4
+    hostname: zoo2
+    ports:
+      - 2182:2181
+    restart: always
+    environment:
+      ZOO_MY_ID: 2
+      ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=0.0.0.0:2888:3888
+  dubbo-admin: 
+    image: xiaochunping/dubbo-admin:1.0
+    links: 
+      - zoo1:zookeeper
+      #- zoo2:zookeeper
+    ports: 
+      - 7001:7001
+    restart: always

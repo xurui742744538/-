@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  master:
+    image: redis:4.0.10-alpine
+    command: redis-server --appendonly yes --masterauth $REDIS_PASSWORD --requirepass $REDIS_PASSWORD
+    volumes:
+      - $PWD/data/master:/data
+    ports:
+      - "6379:6379"
+  slave:
+    image: redis:4.0.10-alpine
+    command: redis-server --appendonly yes --slaveof master 6379 --masterauth $REDIS_PASSWORD --requirepass $REDIS_PASSWORD
+    volumes:
+      - $PWD/data/slave:/data
+    depends_on:
+      - master
+    links:
+      - master
+  sentinel:
+    image: xiaochunping/redis-sentinel
+    environment:
+      #REDIS_PASSWORD: redis123456
+      REDIS_PASSWORD: $REDIS_PASSWORD
+    depends_on:
+      - master
+    links:
+      - master
+    ports:
+      - "26379:26379"

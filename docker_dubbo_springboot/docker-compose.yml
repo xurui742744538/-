@@ -1,0 +1,14 @@
+version: '3.4'
+services:
+  zk_server: 
+    image: xiaochunping/zookeeper:3.4
+    ports:
+      - 2181:2181
+    restart: always
+  dubbo-admin: 
+    image: xiaochunping/dubbo-admin:1.0
+    links: 
+      - zk_server:zookeeper
+    ports: 
+      - 7001:7001
+    restart: always
