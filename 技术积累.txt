@@ -158,24 +158,6 @@ openssl SHA256withRSA -noout -modulus -in server.key | openssl md5
 [root@iZj6cidu8x1kplwhqz0ksdZ keystore]# openssl x509 -noout -modulus -in STAR_gpec_net.crt | openssl md5
 (stdin)= 9767856935bb5facf7fb6f571cea4021
 
-
-
-
---------------------张明才-----------------------
-host: 106.12.221.210		
-user: root					
-pw:ixiaowang#666
-database: 'jokes'			
-user:root
-password: 'Zmc_748596123'	
-
-----------------------杜志超----------------------
-服务器密码：LIdu473325
-公网：124.71.99.164
-内网：192.168.0.48
-
-
-
 docker:
 docker search redis	//搜索镜像
 
