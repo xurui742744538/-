@@ -1,0 +1,252 @@
+============================《groovy项目启动参数begin》================================
+
+com.gd.magic.JettyStarter
+
+-Xms512m -Xmx804m -XX:PermSize=250M -XX:MaxPermSize=356 -Djetty.port=8090 -Djmagick.systemclassloader=no -Ddynagroovy=true
+
+//获取当前登录机构
+layui.admin.data()['loginer'].orgId);
+//获取当前登录机构等级
+Common.cOrg().orgLevel
+
+Linux下编程难免要开启多个vim共同编辑同一个文件，这时再次保存就会出现：
+swap file "*.swp" already exists!
+解决方案：
+ll -a  //显示隐藏文件
+rm .*.swp  //删除隐藏文件
+
+
+===================git=====================
+1、git clone 
+2、git init
+3、git add .
+4、git commit xxx -m "提交注释"
+5、git push origin master/branch
+6、git status
+7、git checkout -b dev //本地仓库新建分支为dev并切换到dev分支
+7.1、git switch dev 切换到dev分支
+8、git merge dev // 先切换到master,然后将dev分支合并到master
+9、git fetch origin master:temp //从远程的origin仓库的master分支下载到本地并新建一个分支temp
+10、git diff temp//比较master分支和temp分支的不同
+11、git reflog //查看所有提交记录
+12、git reset --hard d8c100e //本地强制定位到d8c100e版本
+13、git revert d8c100e //撤销本地该版本，保留前后版本
+
+vscode从svn 导出项目Ctrl+alt+p
+
+//js遍历对象
+for(var index in tradeMatchDifference) {
+	alert(index + "=" +  tradeMatchDifference[index]);
+} 
+
+postman url:
+	http://localhost:8080/d/dwr/entrustPayService/test?ps=["支付宝免密支付测试"]
+
+date -s "15:52:40 2019-08-05"
+
+vim 搜索特殊字符要加转义字符"\"
+eg:搜索 17/Jan/2019 10:20:53
+:/\/Jan\/2019\ 10:20:53
+
+find / -name rechargeCarousel.jpg //查找某个文件位置
+
+grep -n '缺少对账文件下载记录'  eclipseLog.txt > notDate.txt
+
+md5sum `find ./com/ -name '*.class' | sort` > /tmp/uat_be_diff_class.txt
+
+grep "4200000351201908076125204074" smice.2019-08-07.log
+
+grep -rn "hello,world!"*  //如果你想在当前目录下 查找"hello,world!"字符串,可以这样:
+
+tail -f smice.2019-09-05.log |grep 1909031146000000000002100288004OEN
+
+curl http://127.0.0.1:8091/d/dwr/antCqProgramApiService/synEmployee & tail -f smice.2019-09-05.log
+
+kill -9 54268 ;sleep 5 ; /opt/tomcat/apache-tomcat-7.0.69_1.0.0.7/bin/startup.sh & tail -f /opt/tomcat/apache-tomcat-7.0.69_1.0.0.7/webapps/ROOT/workspace/log/system/smice.2019-09-05.log 
+
+cp -p /opt/tomcat/apache-tomcat-7.0.69_1.0.0.7/webapps/ROOT/WEB-INF/classes/com/gd/card/mgnt/MerchantMgntService.class ./   #复制原文件，保持原文件的修改时间
+
+ll | grep MerchantMgntService | wc -l
+
+mkdir -p com/gd/card/constant/   #递归创建目录
+
+gzip XXX.gz -d 解压XXX.gz
+
+tar –czf com.tar.gz com
+tar -xzvf com.tar.gz 解压tar.gz
+
+cp -prf /home/sipadmin/temp/ ./  #覆盖temp目录下 如果有相同文件则覆盖
+
+tar zcvf ROOT.tar.gz ROOT --exclude=ROOT/workspace --exclude=ROOT/WEB-INF/lib
+
+scp root@39.107.237.142:/opt/antpay_test.tar.gz /usr/local/src #/opt/antpay_test.tar.gz (远程文件) /usr/local/src(本地目录)
+
+
+scp root@123.150.103.181:/usr/local/src/jdk-8u171-linux-x64.tar.gz /usr/local/src
+
+
+find / -name cloudoildb
+
+orecal 查询seq
+select SEQ_ON_USER.nextval from sys.dual; 
+
+netstat -an | grep 3306   //查看所有3306端口使用情况·
+
+rpm -qa | grep jdk
+yum -y remove 
+
+yum install java-1.8.0-openjdk.x86_64 # 安装jdk有java命令，没有javac
+yum install -y java-1.8.0-openjdk-devel.x86_64 #还需要安装javac (其实只需要安装这个即可)
+
+nginx -t 检查配置文件是否有错
+nginx -s reload 重新加载配置文件，生效不停服
+
+启动mysql服务7.0及以上
+systemctl start mysqld.service
+systemctl stop mysqld.service
+systemctl restart mysqld.service
+systemctl status mysqld.service
+设置mysql服务开机自启动
+systemctl enable mysqld.service
+停止mysql服务开机自启动
+systemctl disable mysqld.service
+
+启动mysql服务6.9及以下
+service mysqld start
+service mysqld restart
+service mysqld status
+
+cat /etc/issue 此命令也适用于所有的Linux发行版。
+cat /etc/redhat-release，这种方法只适合Redhat系的Linux
+
+防火墙
+systemctl start  firewalld.service
+systemctl stop  firewalld.service
+systemctl restart  firewalld.service
+systemctl status firewalld.service
+
+systemctl disable firewalld.service
+
+刘金耀 17:01:43
+firewall-cmd --zone=public --add-port=9200/tcp --permanent
+
+刘金耀 17:01:54
+firewall-cmd --reload && firewall-cmd --list-all
+
+
+linux登录mysql:
+
+/usr/local/mysql/bin
+
+./mysql -u root -p
+
+FehXhSdj%Bk3g^
+
+
+openssl x509 -in STAR_gpec_net.crt -out nginx.pem // 证书格式转换
+
+openssl x509 -noout -modulus -in STAR_gpec_net.crt | openssl md5
+
+(stdin)= adb462033cdd2df8b160a68a34a0e619
+
+
+openssl SHA256withRSA -noout -modulus -in server.key | openssl md5
+
+(stdin)= ad6f80423e6963066a9969f183dccbd4
+
+
+[root@iZj6cidu8x1kplwhqz0ksdZ keystore]# openssl x509 -noout -modulus -in STAR_gpec_net.crt | openssl md5
+(stdin)= 9767856935bb5facf7fb6f571cea4021
+
+
+
+
+--------------------张明才-----------------------
+host: 106.12.221.210		
+user: root					
+pw:ixiaowang#666
+database: 'jokes'			
+user:root
+password: 'Zmc_748596123'	
+
+----------------------杜志超----------------------
+服务器密码：LIdu473325
+公网：124.71.99.164
+内网：192.168.0.48
+
+
+
+docker:
+docker search redis	//搜索镜像
+
+docker pull redis  //下载镜像
+
+docker run --name xurui-redis -p 6389:6379 -d redis   //启动容器（xurui-reids）,并且，映射虚拟机端口6389倒docker容器端口6379
+
+docker exec -it xurui-redis bash					  //进入已经启动的容器
+
+docker start xurui-reids
+
+docker stop xurui-redis
+
+docker rm xurui-redis			// 删除容器
+
+docker rmi hello-world          // 删除镜像
+
+docker inspect container_name | grep Mounts -A 30 //查看容器的挂载目录
+
+
+docker cp mysql:/docker-entrypoint-initdb.d /usr //容器cp =>> 宿主机
+docker cp /root/platform-web-2.0.0.jar iking-java:/usr/src/app/platform-web-2.0.0.jar  // 宿主机cp=>>容器
+docker-compose restart iking-java
+docker-compose logs --tail=3000 -f iking-java
+
+
+
+Dockerfile构建mysql
+FORM mysql:5.7
+COPY my.cnf /etc/mysql
+EXPOSE 3306
+CMD ["mysqld"]
+
+根据Dockerfile构建镜像  注意命令尾部有点‘.’
+docker build -t xurui/mysql:v_1.1 .
+
+
+docker 启动mysq_8*
+
+
+docker run \
+--name mysql \
+-p 3306:3306 \
+--privileged=true \
+-v /usr/local/mysqlData/test/conf:/etc/mysql \
+-v /usr/local/mysqlData/test/data:/var/lib/mysql \
+-v /home/mysql/mysql-files:/var/lib/mysql-files \
+-e MYSQL_ROOT_PASSWORD=xurui123456 \
+-d mysql
+
+mysql -uroot -p
+CREATE USER 'root'@'%' IDENTIFIED BY 'xurui123456';
+
+grant all privileges on *.* to 'root'@'%';
+
+alter user 'root'@'%' identified with mysql_native_password by 'xurui123456';
+
+FLUSH PRIVILEGES;
+
+
+
+
+Linux临时解决当前对话框中文乱码
+export LC_ALL=zh_CN.GB2312;export LANG=zh_CN.GB2312
+
+chown -R xurui elasticsearch-7.9.2 // 将elasticsearch-7.9.2目录权限指定给xurui这个用户
+
+ss -ntlp
+
+ip addr // 
+
+
+df -h //查看物理内存使用情况
+
