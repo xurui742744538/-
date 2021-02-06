@@ -26,12 +26,14 @@ rm .*.swp  //删除隐藏文件
 7、git checkout -b dev //本地仓库新建分支为dev并切换到dev分支
 7.1、git switch dev 切换到dev分支
 8、git merge dev // 先切换到master,然后将dev分支合并到master
+8.1、git merge --abort
+8.2、git reset --merge
 9、git fetch origin master:temp //从远程的origin仓库的master分支下载到本地并新建一个分支temp
 10、git diff temp//比较master分支和temp分支的不同
 11、git reflog //查看所有提交记录
 12、git reset --hard d8c100e //本地强制定位到d8c100e版本
 13、git revert d8c100e //撤销本地该版本，保留前后版本
-
+14、git remote update origin -p  //更新远程分支列表
 vscode从svn 导出项目Ctrl+alt+p
 
 //js遍历对象
@@ -133,7 +135,6 @@ firewall-cmd --zone=public --add-port=9200/tcp --permanent
 刘金耀 17:01:54
 firewall-cmd --reload && firewall-cmd --list-all
 
-
 linux登录mysql:
 
 /usr/local/mysql/bin
@@ -158,14 +159,15 @@ openssl SHA256withRSA -noout -modulus -in server.key | openssl md5
 [root@iZj6cidu8x1kplwhqz0ksdZ keystore]# openssl x509 -noout -modulus -in STAR_gpec_net.crt | openssl md5
 (stdin)= 9767856935bb5facf7fb6f571cea4021
 
+docker hub账号：xurui0153 密码：xurui123456.com
 docker:
 docker search redis	//搜索镜像
 
 docker pull redis  //下载镜像
 
-docker run --name xurui-redis -p 6389:6379 -d redis   //启动容器（xurui-reids）,并且，映射虚拟机端口6389倒docker容器端口6379
+docker run --name redis -p 6389:6379 -d redis   //启动容器（xurui-reids）,并且，映射虚拟机端口6389倒docker容器端口6379
 
-docker exec -it xurui-redis bash					  //进入已经启动的容器
+docker exec -it redis bash					  //进入已经启动的容器
 
 docker start xurui-reids
 
@@ -175,7 +177,9 @@ docker rm xurui-redis			// 删除容器
 
 docker rmi hello-world          // 删除镜像
 
-docker inspect container_name | grep Mounts -A 30 //查看容器的挂载目录
+docker inspect xurui-mysql | grep Mounts -A 30 //查看容器的挂载目录
+
+
 
 
 docker cp mysql:/docker-entrypoint-initdb.d /usr //容器cp =>> 宿主机
@@ -183,10 +187,12 @@ docker cp /root/platform-web-2.0.0.jar iking-java:/usr/src/app/platform-web-2.0.
 docker-compose restart iking-java
 docker-compose logs --tail=3000 -f iking-java
 
+docker-compose up -d  // 启动有改变的容器
+
 
 
 Dockerfile构建mysql
-FORM mysql:5.7
+FROM mysql:5.7
 COPY my.cnf /etc/mysql
 EXPOSE 3306
 CMD ["mysqld"]
@@ -200,7 +206,7 @@ docker 启动mysq_8*
 
 docker run \
 --name mysql \
--p 3306:3306 \
+-p 3308:3306 \
 --privileged=true \
 -v /usr/local/mysqlData/test/conf:/etc/mysql \
 -v /usr/local/mysqlData/test/data:/var/lib/mysql \
@@ -232,3 +238,34 @@ ip addr //
 
 df -h //查看物理内存使用情况
 
+cat /proc/cpuinfo| grep "processor"| wc -l
+
+ubuntu:
+sudo apt-get install lrzsz
+
+
+nohup java -jar php-convert-java-0.0.1-SNAPSHOT.jar -Xms512m -Xmx512m --spring.profiles.active=dev --server.port=9199 &
+
+
+docker安装nacos
+1.下载镜像
+docker  pull nacos/nacos-server
+2.启动镜像
+docker run -d -p 8848:8848 --env MODE=standalone  --name nacos  nacos/nacos-server
+
+docker安装rabbitmq：
+#指定版本，该版本包含了web控制页面
+docker pull rabbitmq:management
+#方式一：默认guest 用户，密码也是 guest
+
+docker run -d --hostname my-rabbit --name rabbit -p 15672:15672 -p 5672:5672 rabbitmq:management
+#方式二：设置用户名和密码
+docker run -d --hostname my-rabbit --name rabbit -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password -p 15672:15672 -p 5672:5672 rabbitmq:management
+
+
+docker安装mongodb：
+docker run --name mongodb -p 27017:27017 -d mongo
+
+docker exec -it 6bc7c4c303a7  mongo root
+
+db.createUser({user: 'root', pwd: 'root', roles: [{ role: "userAdminAnyDatabase", db: "admin" }]});
